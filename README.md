@@ -25,7 +25,7 @@ You should be able of using the project by only installing ```git``` and ```curl
 
 -----
 
-- ```merge``` - Merges a chosen branch with your current one. In case of conflicts, it doesn't merge and displays every conflict for fixing
+- ```merge``` - Merges a chosen branch with your current one. Handles conflicts by showing them and aborting the merge
 - ```pull``` - Updates your main branch with the remote main branch, works automatically also in case of upstreams with forked repos
 -----
 
