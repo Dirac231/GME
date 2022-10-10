@@ -10,6 +10,6 @@ echo -e "Go here: \"https://github.com/settings/tokens/new\" and create a token 
 read -p "Please enter your token: " token; echo $token > $homepath/.git_tok
 
 echo -e "\n#----GME FUNCTIONS----" >> $homepath/.bashrc; echo -e "git_user=\"$user\"" >> $homepath/.bashrc
-cat functions.sh >> $homepath/.bashrc; source $homepath/.bashrc
+cat functions.sh >> $homepath/.bashrc; exec bash
 
 echo -e "\nAll done! Try to create a new repository with the command \"newrepo\""
