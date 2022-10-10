@@ -4,8 +4,7 @@ Git Made Easy is a collection of functions to make git more comfortable to use.
 ## Installation
 
 1) Clone this repository and run ```bash setup.sh``` from the main folder
-2) Follow the instructions on your terminal
-3) You can then remove the cloned repository once the installer finishes
+2) Follow the instructions on your terminal, after finishing you can remove the cloned repository safely
 
 You should be able of using the project by only installing ```git``` and ```curl```, as other tools should be native to most linux distros
 
