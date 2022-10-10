@@ -7,7 +7,7 @@ newrepo(){
         curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
         mkdir -p ./$repo && cd "$_"
 
-        echo "## First readme" > README.md; git init -b main &>/dev/null; git add README.md &>/dev/null
+        echo "## First readme" > README.md; git init; git checkout -b main &>/dev/null; git add README.md &>/dev/null
         git commit -m "First commit" &>/dev/null; git remote add origin https://$tok@github.com/$git_user/$repo.git &>/dev/null
         git push -u origin main &>/dev/null
 
@@ -20,17 +20,17 @@ pushrepo(){
         if [ ! -z $gitdir ]
         then
                 echo "Warning! You are already inside a local repo!"
-                read resp\?"Would you like to remove \".git\" and push the project to a new repo? (Y/N)"
+                read -p "Would you like to remove \".git\" and push the project to a new repo? (Y/N)" resp
                 if [[ $resp =~ ^[Yy]$ ]]
                 then
                         cd $(git rev-parse --show-toplevel); rm -rf .git; pushrepo
                 fi
         fi
-        read repo\?"Enter the repo name: "
+        read -p "Enter the repo name: " repo
         echo -e "\nCreating private repo \"$repo\"...\n"
         curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
 
-        git init -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
+        git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
         echo -e "\nDONE\n"
 }
 
