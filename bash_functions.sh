@@ -14,6 +14,18 @@ newrepo(){
         echo -e "Repository \"$repo\" created at: \"$(pwd)\""
 }
 
+rename(){
+  gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
+  if [ -z $gitdir ]
+  then
+    echo "It seems like you are not inside a git working tree!"
+    return 1
+  fi
+  git branch -m $1 $2
+  git push origin :$1
+  git push --set-upstream origin $2
+}
+
 pushrepo(){
   tok=`cat /home/$(whoami)/.git_tok`
   gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
