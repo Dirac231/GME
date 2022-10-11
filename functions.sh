@@ -26,6 +26,11 @@ pushrepo(){
                         cd $(git rev-parse --show-toplevel); rm -rf .git; pushrepo
                 fi
         fi
+	
+	if [ -z "$(ls -A /path/to/dir)" ]; then
+   		echo "## Readme" > README.md; pushrepo
+	fi
+
         read -p "Enter the repo name: " repo
         echo -e "\nCreating private repo \"$repo\"...\n"
         curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
