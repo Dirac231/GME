@@ -24,6 +24,9 @@ pushrepo(){
                 if [[ $resp =~ ^[Yy]$ ]]
                 then
                         cd $(git rev-parse --show-toplevel); rm -rf .git; pushrepo
+		else
+			echo "Exiting..."
+			return 1
                 fi
         fi
 	
