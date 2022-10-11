@@ -1,6 +1,6 @@
 ## What is this?
 Git Made Easy is a set of functions to make git more comfortable to use.\
-\ 
+\
 It supports both bash and ZSH environments
 
 ## Installation
