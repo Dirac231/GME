@@ -9,7 +9,7 @@ echo -e "\nHi $user!"
 echo -e "Go here: \"https://github.com/settings/tokens/new\" and create a token with \"repo\" and \"workflow\" scopes\n"
 read -p "Please enter your token: " token; echo $token > $homepath/.git_tok
 
-echo -e "\Select your version"
+echo -e "\nSelect your version"
 echo "1) Bash"
 echo "2) ZSH"
 read sel
