@@ -169,30 +169,34 @@ newrepo(){
 pushrepo(){
   tok=`cat /home/$(whoami)/.git_tok`
   gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
-  if [ ! -z $gitdir ]
-  then
-    		echo "Warning! You are already inside a local repo!"
-		read resp\?"Would you like to remove \".git\" and push the project to a new repo? (Y/N)"
-	        if [[ $resp =~ ^[Yy]$ ]]
-        	then
-			      cd $(git rev-parse --show-toplevel); rm -rf .git; pushrepo
-		else
-			echo "Exiting..."
-			exit 1
-        	fi
+  if [ ! -z $gitdir ]; then
+                echo "Warning! You are already inside a local repo!"
+                read resp\?"Would you like to remove \".git\" and push the project to a new repo? (Y/N)"
+                if [[ $resp =~ ^[Yy]$ ]]; then
+                              cd $(git rev-parse --show-toplevel); rm -rf .git
+                              echo "Done, try to pushrepo now"
+                              exec zsh
+                else
+                        echo "Exiting..."
+                        exec zsh
+                fi
   fi
   
   if [ -z "$(ls -A $(pwd))" ]; then
-  	echo "## Readme" > README.md; pushrepo
+
+        echo "## Readme" > README.md;
+        echo "Folder is empty! Added README.md"
+        echo "Try to pushrepo again"; exec zsh
+
   fi
   
-  read repo\?"Enter the repo name: "; b_cur=$(basename $(pwd)); cd ..; mv $b_cur $repo
+  read repo\?"Enter the repo name: "; b_cur=$(basename $(pwd)); cd ..; mv $b_cur $repo; cd $repo
   
   echo -e "\nCreating private repo \"$repo\"...\n"
   curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
   
-  git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
-  echo -e "\nDONE\n"; exit 1
+  git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/Dirac231/$repo.git; git push -u origin main
+  echo -e "\nDONE\n"
 }
 
 merge(){
