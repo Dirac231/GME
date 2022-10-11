@@ -27,7 +27,7 @@ pushrepo(){
                 fi
         fi
 	
-	if [ -z "$(ls -A /path/to/dir)" ]; then
+	if [ -z "$(ls -A $(pwd))" ]; then
    		echo "## Readme" > README.md; pushrepo
 	fi
 
