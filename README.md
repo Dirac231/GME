@@ -5,12 +5,17 @@ It supports both bash and ZSH environments
 
 ## Yes, but why?
 
-1 - If you mess up a commit, you need to remember long commands, maybe open a cheat sheet or two, and then fix the problem. With GME you just do "undo" and fix the mistake, or "revert" if you really messed up.
-2 - You don't have to worry about your local and remote being async ever again, "pull" will sync your local main, and the common push workflow is done with only the "commit" command
-3 - Merge conflicts? Nah, GME will display the conflicts for you while gracefully terminating the merge before a disaster happens, you can merge with no worries!
-4 - Have to push your local project to github? Just do "pushrepo" while in the folder and it's done.
-3 - You can move, create, switch and rename branches on the fly synchronously with a simple "br" command
-4 - Pull requests, forks, upstreams are boring to deal with. In GME you just do "pullreq" after a "commit", and "fork" works by taking the URL. To sync your main with the upstram just do "pull"!
+- If you mess up a commit, you need to remember long commands, maybe open a cheat sheet or two, and then fix the problem. With GME you just do "undo" and fix the mistake, or "revert" if you really messed up.
+
+- You don't have to worry about your local and remote being async ever again, "pull" will sync your local main, and the common push workflow is done with only the "commit" command
+
+- Merge conflicts? Nah, GME will display the conflicts for you while gracefully terminating the merge before a disaster happens, you can merge with no worries!
+
+- Have to push your local project to github? Just do "pushrepo" while in the folder and it's done.
+
+- You can move, create, switch and rename branches on the fly synchronously with a simple "br" command
+
+- Pull requests, forks, upstreams are boring to deal with. In GME you just do "pullreq" after a "commit", and "fork" works by taking the URL. To sync your main with the upstram just do "pull"!
 
 ## Installation
 
