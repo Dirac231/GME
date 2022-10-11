@@ -23,7 +23,7 @@ You should be able of using the project by only installing ```git``` and ```curl
 
 - ```commit``` - Updates the repository by including all the changes
 - ```commit [file_or_dir]``` - Updates the repository by including only the changes of a file or directory
-- ```undo``` - Undoes the last "commit" command, keeping all the changed files so that you can fix the error, and "commit" them again
+- ```undo``` - Undoes the last "commit" command, keeping all the changed files so that you can fix the error, and "commit" again
 - ```revert``` - Fully reverts the repository before the last commit, useful for accident deleting or when commits go wrong
 
 -----
