@@ -15,32 +15,38 @@ newrepo(){
 }
 
 pushrepo(){
-        tok=`cat /home/$(whoami)/.git_tok`
-        gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
-        if [ ! -z $gitdir ]
-        then
+  tok=`cat /home/$(whoami)/.git_tok`
+  gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
+  if [ ! -z $gitdir ]; then
                 echo "Warning! You are already inside a local repo!"
                 read -p "Would you like to remove \".git\" and push the project to a new repo? (Y/N)" resp
-                if [[ $resp =~ ^[Yy]$ ]]
-                then
-                        cd $(git rev-parse --show-toplevel); rm -rf .git; pushrepo
-		else
-			echo "Exiting..."
-			return 1
+                if [[ $resp =~ ^[Yy]$ ]]; then
+                              cd $(git rev-parse --show-toplevel); rm -rf .git
+                              echo "Done, try to pushrepo now"
+                              exec bash
+                else
+                        echo "Exiting..."
+                        exec bash
                 fi
-        fi
-	
-	if [ -z "$(ls -A $(pwd))" ]; then
-   		echo "## Readme" > README.md; pushrepo
-	fi
+  fi
+  
+  if [ -z "$(ls -A $(pwd))" ]; then
 
-        read -p "Enter the repo name: " repo
-        echo -e "\nCreating private repo \"$repo\"...\n"
-        curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
+        echo "## Readme" > README.md;
+        echo "Folder is empty! Added README.md"
+        echo "Try to pushrepo again"; exec bash
 
-        git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
-        echo -e "\nDONE\n"
+  fi
+  
+  read -p "Enter the repo name: " repo; b_cur=$(basename $(pwd)); cd ..; mv $b_cur $repo; cd $repo
+  
+  echo -e "\nCreating private repo \"$repo\"...\n"
+  curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
+  
+  git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
+  echo -e "\nDONE\n"
 }
+
 
 revert(){
         gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
