@@ -42,6 +42,19 @@ pushrepo(){
         echo -e "\nDONE\n"
 }
 
+revert(){
+        gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
+        if [ -z $gitdir ]
+        then
+                echo "It seems like you are not inside a git working tree!"
+                return 1
+        fi
+ 
+        cur_branch=`git status | head -n 1 | awk -F " " '{print $3}'`
+        last_hash=`git reflog | head -n 1 | awk -F" " '{print $1}'`
+        git revert --no-commit $last_hash; git commit -m "Reverted last commit"; git push -u origin $cur_branch >/dev/null
+}
+
 merge(){
         gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
         if [ -z $gitdir ]
