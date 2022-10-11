@@ -183,12 +183,13 @@ pushrepo(){
   	echo "## Readme" > README.md; pushrepo
   fi
   
-  read repo\?"Enter the repo name: "
+  read repo\?"Enter the repo name: "; b_cur=$(basename $(pwd)); cd ..; mv $b_cur $repo
+  
   echo -e "\nCreating private repo \"$repo\"...\n"
   curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
   
-	git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
-	echo -e "\nDONE\n"
+  git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
+  echo -e "\nDONE\n"; exit 1
 }
 
 merge(){
