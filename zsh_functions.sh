@@ -1,14 +1,14 @@
 revert(){
-	gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
+  gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
   if [ -z $gitdir ]
   then
     echo "It seems like you are not inside a git working tree!"
     return 1
   fi
 	
-	cur_branch=`git status | head -n 1 | awk -F " " '{print $3}'`
-	last_hash=`git reflog | head -n 1 | awk -F" " '{print $1}'`
-	git revert --no-commit $last_hash; git commit -m "Reverted last commit"; git push -u origin $cur_branch >/dev/null
+  cur_branch=`git status | head -n 1 | awk -F " " '{print $3}'`
+  last_hash=`git reflog | head -n 1 | awk -F" " '{print $1}'`
+  git revert --no-commit $last_hash; git commit -m "Reverted last commit"; git push -u origin $cur_branch >/dev/null
 }
 
 commit(){
@@ -47,7 +47,7 @@ br(){
 
 	if [ -z "$1" ]
 	then
-   	echo -e "Branches:"; echo -e "--------------"; echo $tmpb; echo "---------------"
+   		echo -e "Branches:"; echo -e "--------------"; echo $tmpb; echo "---------------"
 		return 1
 	fi
 
@@ -167,21 +167,26 @@ newrepo(){
 }
 
 pushrepo(){
-	tok=`cat /home/$(whoami)/.git_tok`
-	gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
+  tok=`cat /home/$(whoami)/.git_tok`
+  gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
   if [ ! -z $gitdir ]
   then
-    echo "Warning! You are already inside a local repo!"
+    		echo "Warning! You are already inside a local repo!"
 		read resp\?"Would you like to remove \".git\" and push the project to a new repo? (Y/N)"
 	        if [[ $resp =~ ^[Yy]$ ]]
         	then
 			      cd $(git rev-parse --show-toplevel); rm -rf .git; pushrepo
         	fi
   fi
-	read repo\?"Enter the repo name: "
+  
+  if [ -z "$(ls -A $(pwd))" ]; then
+  	echo "## Readme" > README.md; pushrepo
+  fi
+  
+  read repo\?"Enter the repo name: "
   echo -e "\nCreating private repo \"$repo\"...\n"
   curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
-
+  
 	git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
 	echo -e "\nDONE\n"
 }
