@@ -11,6 +11,18 @@ revert(){
   git revert --no-commit $last_hash; git commit -m "Reverted last commit"; git push -u origin $cur_branch >/dev/null
 }
 
+rename(){
+  gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
+  if [ -z $gitdir ]
+  then
+    echo "It seems like you are not inside a git working tree!"
+    return 1
+  fi
+  git branch -m $1 $2
+  git push origin :$1
+  git push --set-upstream origin $2
+}
+
 commit(){
 	gitdir=`git rev-parse --is-inside-work-tree 2>/dev/null`
 	if [ -z $gitdir ]
