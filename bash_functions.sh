@@ -116,7 +116,7 @@ commit(){
 		read -p "Your commit message: " com_mes
 		git add -A; git commit -m "$com_mes"; git push -u origin $cur_branch >/dev/null
 
-	elif [ -f $1 ]
+	elif [[ -f $1 || -d $1 ]]
 	then
 		read -p "Your commit message: " com_mes
 		git add $1; git commit -m "$com_mes"; git push -u origin $cur_branch >/dev/null
