@@ -1,7 +1,7 @@
 ## What is this?
 Git Made Easy is a set of functions to make git more comfortable and faster to use.\
 \
-It supports both bash and ZSH environments
+It supports both bash and ZSH environments, if you have any requests or suggestions don't hesitate!
 
 ## Yes, but why?
 
