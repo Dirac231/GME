@@ -18,6 +18,7 @@ You should be able of using the project by only installing ```git``` and ```curl
 
 - ```br``` - Lists the branches in the current repository 
 - ```br [branch]``` - Moves to another branch, if the branch doesn't exist it creates it
+- ```rename [old] [new]``` - Renames the "old" branch to the "new" branch
 
 -----
 
