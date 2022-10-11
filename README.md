@@ -9,7 +9,7 @@ It supports both bash and ZSH environments, if you have any requests or suggesti
 
 - You don't have to worry about your local and remote being async ever again, "pull" will sync your local main, and the common push workflow is done with only the "commit" command
 
-- Merge conflicts? Nah, GME will display the conflicts for you while gracefully terminating the merge before a disaster happens, you can merge with no worries!
+- Merge conflicts? Nah, the "merge" command will tell the conflicts for you while gracefully terminating everything before a disaster, you can merge with no worries!
 
 - Have to push your local project to github? Just do "pushrepo" while in the folder and it's done.
 
