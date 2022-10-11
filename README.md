@@ -10,7 +10,7 @@ You should be able of using the project by only installing ```git``` and ```curl
 
 ## Commands
 - ```newrepo``` - Creates a new private repository asking for a name
-- ```pushrepo``` - Converts a local project folder in a private repository
+- ```pushrepo``` - Converts a local project folder in a private repository, also supports unlinked local repos and empty folders
 
 -----
 
