@@ -157,7 +157,7 @@ newrepo(){
 
 	echo -e "\nCreating private repo \"$repo\"...\n"
 	curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
-	mkdir -p .$repo && cd "$_"
+	mkdir -p ./$repo && cd "$_"
 
 	echo "## First readme" > README.md; git init; git checkout -b main &>/dev/null; git add README.md &>/dev/null
 	git commit -m "First commit" &>/dev/null; git remote add origin https://$tok@github.com/$git_user/$repo.git &>/dev/null
