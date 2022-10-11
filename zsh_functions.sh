@@ -195,7 +195,7 @@ pushrepo(){
   echo -e "\nCreating private repo \"$repo\"...\n"
   curl -H "Authorization: token $tok" --data '{"name":"'$repo'","private":true}' https://api.github.com/user/repos &>/dev/null
   
-  git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/Dirac231/$repo.git; git push -u origin main
+  git init; git checkout -b main; git add -A; git commit -m "Pushing local repo"; git remote add origin https://$tok@github.com/$git_user/$repo.git; git push -u origin main
   echo -e "\nDONE\n"
 }
 
