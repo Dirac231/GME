@@ -1,21 +1,7 @@
 ## What is this?
 Git Made Easy is a set of functions to make git more comfortable and faster to use.\
 \
-It supports both bash and ZSH environments, if you have any requests or suggestions don't hesitate!
-
-## Yes, but why?
-
-- If you mess up a commit, you need to remember long commands, maybe open a cheat sheet or two, and then fix the problem. With GME you just do "undo" and fix the mistake, or "revert" if you really messed up.
-
-- You don't have to worry about your local and remote being async ever again, "pull" will sync your local main, and the common push workflow is done with only the "commit" command
-
-- Merge conflicts? Nah, the "merge" command will tell the conflicts for you while gracefully terminating everything before a disaster, you can merge with no worries!
-
-- Have to push your local project to github? Just do "pushrepo" while in the folder and it's done.
-
-- You can move, create, switch and rename branches on the fly synchronously with a simple "br" command
-
-- Pull requests, forks, upstreams are boring to deal with. In GME you just do "pullreq" after a "commit", and "fork" works by taking the URL. To sync your main with the upstram just do "pull"!
+It supports both bash and ZSH environments.
 
 ## Installation
 
