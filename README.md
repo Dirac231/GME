@@ -1,5 +1,7 @@
 ## What is this?
-Git Made Easy is a set of functions to make git more comfortable and faster to use.\
+Git Made Easy is a set of functions to make git more comfortable and faster to use for newcomers, originally inspired by how accurate this picture is:\
+![git](https://github.com/user-attachments/assets/00004763-3ef8-4425-b86f-68862313fbd1)
+\
 \
 It supports both bash and ZSH environments.
 
